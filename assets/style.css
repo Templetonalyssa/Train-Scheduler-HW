@@ -1,0 +1,36 @@
+#employee-table th,
+td {
+  display: inline-block;
+  width: 16.575%;
+  font-family: Arial,sans-serif;
+}
+
+@font-face{
+    font-family: "mysteryTour";
+    src: url("./images/KeeponTruckin.ttf")
+    format("truetype"); 
+}
+
+.jumbotron, .text-center {
+    font-family: "mysteryTour";
+    font-size: 60px;
+    background-image: url("./images/psychedelic.jpg");
+    text-decoration: underline;
+}
+
+.container{
+    background-color: orange;
+}
+
+body{
+    background-color: purple;
+}
+
+.card-header{
+    font-family: "mysteryTour";
+    font-size: 30px;
+}
+
+label{
+    font-weight: bold;
+}
