@@ -32,6 +32,11 @@ var config = {
   var database = firebase.database();
 
   
+  var currentTimeShow = moment().format("hh:mm a");
+  var currentMilitaryTime = moment().format("HH:mm");
+  console.log("CURRENT TIME: " + moment(currentTimeShow).format("hh:mm"));
+
+
   // Button for adding Employees
   $("#add-employee-btn").on("click", function(event) {
     event.preventDefault();
@@ -50,6 +55,7 @@ var config = {
       rate: trainFreq
     };
   
+
     // Uploads employee data to the database
     database.ref().push(newTrain);
   
@@ -86,12 +92,40 @@ var config = {
   
     // Prettify the employee start
    // var trainFirstTimePretty = moment.unix(trainFirstTime).format("mm");
+
+   var tFrequency = 3;
+
+    // Time is 3:30 AM
+    var firstTime = "03:30";
+
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
   
-    // Calculate the months worked using hardcore math
-    // To calculate the months worked
-    //var empMonths = moment().diff(moment(trainFirstTime, "mm"), "minutes");
-    //console.log(empMonths);
-  
+    var displayTime = $("#time").text(currentTimeShow);
+    var displayMilitaryTime = $("#military-time").text(currentMilitaryTime);
+
   
     // Create the new row
     var newRow = $("<tr>").append(
