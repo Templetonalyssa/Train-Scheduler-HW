@@ -1,12 +1,3 @@
-// Steps to complete:
-
-// 1. Initialize Firebase
-// 2. Create button for adding new employees - then update the html + update the database
-// 3. Create a way to retrieve employees from the employee database.
-// 4. Create a way to calculate the months worked. Using difference between start and current time.
-//    Then use moment.js formatting to set difference in months.
-// 5. Calculate Total billed
-
 // 1. Initialize Firebase
 var config = {
     apiKey: "AIzaSyBZaiFStauQdLX5Y3be0FJFaq_Q8aiihJI",
@@ -18,18 +9,19 @@ var config = {
   };
 
   firebase.initializeApp(config);
-// var config = {
-//     apiKey: "AIzaSyBW8UeCZwlLjI_O334LUz5Uum_re6DG51A",
-//     authDomain: "q-timesheet.firebaseapp.com",
-//     databaseURL: "https://q-timesheet.firebaseio.com",
-//     projectId: "q-timesheet",
-//     storageBucket: "q-timesheet.appspot.com",
-//     messagingSenderId: "1055234541865"
-//   };
-  
-//   firebase.initializeApp(config);
   
   var database = firebase.database();
+
+  // var audioElement = document.createElement("audio");
+  //       audioElement.setAttribute("src", "The Beatles - Magical Mystery Tour (Remastered 2009).mp3");
+
+  //       // Theme Button
+  //       $(".theme-button").on("click", function() {
+  //         audioElement.play(); 
+  //       });
+  //       $(".pause-button").on("click", function() {
+  //         audioElement.pause();
+  //       });
 
   
   var currentTimeShow = moment().format("hh:mm a");
@@ -37,7 +29,7 @@ var config = {
   console.log("CURRENT TIME: " + moment(currentTimeShow).format("hh:mm"));
 
 
-  // Button for adding Employees
+  // Button for adding trains
   $("#add-employee-btn").on("click", function(event) {
     event.preventDefault();
   
@@ -65,8 +57,6 @@ var config = {
     console.log(newTrain.start);
     console.log(newTrain.rate);
   
-   // alert("Employee successfully added");
-  
     // Clears all of the text-boxes
     $("#train-name-input").val("");
     $("#destination-input").val("");
@@ -89,33 +79,26 @@ var config = {
     console.log(trainDest);
     console.log(trainFirstTime);
     console.log(trainFreq);
-  
-    // Prettify the employee start
-   // var trainFirstTimePretty = moment.unix(trainFirstTime).format("mm");
 
-   var tFrequency = 3;
-
-    // Time is 3:30 AM
-    var firstTime = "03:30";
 
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    var firstTimeConverted = moment(trainFirstTime, "HH:mm").subtract(1, "years");
     console.log(firstTimeConverted);
 
     // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    // var currentTime = moment();
+    // console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
 
     // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
+    var tRemainder = diffTime % trainFreq;
     console.log(tRemainder);
 
     // Minute Until Train
-    var tMinutesTillTrain = tFrequency - tRemainder;
+    var tMinutesTillTrain = trainFreq - tRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
     // Next Train
@@ -132,8 +115,8 @@ var config = {
       $("<td>").text(trainName),
       $("<td>").text(trainDest),
       $("<td>").text(trainFreq),
-      //$("<td>").text(empMonths),
       $("<td>").text(trainFirstTime),
+      $("<td>").text(moment(nextTrain).format("hh:mm")),
     );
   
     // Append the new row to the table
