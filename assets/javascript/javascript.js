@@ -31,12 +31,6 @@ var config = {
   
   var database = firebase.database();
 
- //Button for playing theme song
-
-    $(".pause-button").on("click", function() {
-        $("#audio").pause();
-      });
-
   
   // Button for adding Employees
   $("#add-employee-btn").on("click", function(event) {
@@ -91,25 +85,21 @@ var config = {
     console.log(trainFreq);
   
     // Prettify the employee start
-    var trainFirstTimePretty = moment.unix(trainFirstTime).format("mm");
+   // var trainFirstTimePretty = moment.unix(trainFirstTime).format("mm");
   
     // Calculate the months worked using hardcore math
     // To calculate the months worked
-    var empMonths = moment().diff(moment(trainFirstTime, "mm"), "minutes");
-    console.log(empMonths);
+    //var empMonths = moment().diff(moment(trainFirstTime, "mm"), "minutes");
+    //console.log(empMonths);
   
-    // Calculate the total billed rate
-    //var empBilled = empMonths * trainFreq;
-    //console.log(empBilled);
   
     // Create the new row
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
       $("<td>").text(trainDest),
-      $("<td>").text(trainFirstTimePretty),
-      $("<td>").text(empMonths),
       $("<td>").text(trainFreq),
-     // $("<td>").text(empBilled)
+      //$("<td>").text(empMonths),
+      $("<td>").text(trainFirstTime),
     );
   
     // Append the new row to the table
