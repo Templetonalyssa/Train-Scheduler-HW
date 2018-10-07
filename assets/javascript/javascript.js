@@ -105,6 +105,8 @@ var config = {
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
+    var arrival= moment().add(tMinutesTillTrain, "m").format("hh:mm A");
+
   
     var displayTime = $("#time").text(currentTimeShow);
     var displayMilitaryTime = $("#military-time").text(currentMilitaryTime);
@@ -115,19 +117,12 @@ var config = {
       $("<td>").text(trainName),
       $("<td>").text(trainDest),
       $("<td>").text(trainFreq),
-      $("<td>").text(trainFirstTime),
-      $("<td>").text(moment(nextTrain).format("hh:mm")),
+      $("<td>").text(arrival),
+      $("<td>").text(tMinutesTillTrain)
     );
   
     // Append the new row to the table
     $("#employee-table > tbody").append(newRow);
   });
   
-  // Example Time Math
-  // -----------------------------------------------------------------------------
-  // Assume Employee start date of January 1, 2015
-  // Assume current date is March 1, 2016
-  
-  // We know that this is 15 months.
-  // Now we will create code in moment.js to confirm that any attempt we use meets this test case
   
