@@ -12,16 +12,16 @@ var config = {
   
   var database = firebase.database();
 
-  // var audioElement = document.createElement("audio");
-  //       audioElement.setAttribute("src", "The Beatles - Magical Mystery Tour (Remastered 2009).mp3");
+   var audioElement = document.createElement("audio");
+         audioElement.setAttribute("src", "assets/javascript/The Beatles - Magical Mystery Tour (Remastered 2009).mp3");
 
-  //       // Theme Button
-  //       $(".theme-button").on("click", function() {
-  //         audioElement.play(); 
-  //       });
-  //       $(".pause-button").on("click", function() {
-  //         audioElement.pause();
-  //       });
+         // Theme Button
+       $(".theme-button").on("click", function() {
+        audioElement.play(); 
+        });
+        $(".pause-button").on("click", function() {
+           audioElement.pause();
+        });
 
   
   var currentTimeShow = moment().format("hh:mm a");
