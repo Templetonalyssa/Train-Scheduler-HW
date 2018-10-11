@@ -48,7 +48,7 @@ var config = {
     };
   
 
-    // Uploads employee data to the database
+    // Uploads new train data to the database
     database.ref().push(newTrain);
   
     // Logs everything to console
@@ -74,7 +74,7 @@ var config = {
     var trainFirstTime = childSnapshot.val().start;
     var trainFreq = childSnapshot.val().rate;
   
-    // Employee Info
+    // Train Info
     console.log(trainName);
     console.log(trainDest);
     console.log(trainFirstTime);
